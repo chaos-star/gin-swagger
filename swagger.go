@@ -327,7 +327,7 @@ window.onload = function() {
     {{if .SyntaxHighlight}}
     syntaxHighlight:{
         activated: {{.SyntaxHighlightActivated}},
-        theme: {{.SyntaxHighlightTheme}},
+        theme: "{{.SyntaxHighlightTheme}}",
     },
     {{else}}
      syntaxHighlight: {{.SyntaxHighlight}},
