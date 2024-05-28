@@ -47,6 +47,7 @@ func (config Config) toSwaggerConfig() swaggerConfig {
 		DeepLinking:              config.DeepLinking,
 		DocExpansion:             config.DocExpansion,
 		DefaultModelsExpandDepth: config.DefaultModelsExpandDepth,
+		DefaultModelExpandDepth:  config.DefaultModelExpandDepth,
 		Oauth2RedirectURL: "`${window.location.protocol}//${window.location.host}$" +
 			"{window.location.pathname.split('/').slice(0, window.location.pathname.split('/').length - 1).join('/')}" +
 			"/oauth2-redirect.html`",
@@ -124,6 +125,7 @@ func WrapHandler(handler *webdav.Handler, options ...func(*Config)) gin.HandlerF
 		InstanceName:             swag.Name,
 		Title:                    "Swagger UI",
 		DefaultModelsExpandDepth: 1,
+		DefaultModelExpandDepth:  1,
 		DeepLinking:              true,
 		PersistAuthorization:     false,
 		Oauth2DefaultClientID:    "",
