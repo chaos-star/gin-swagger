@@ -302,7 +302,7 @@ body {
   display: none;
 }
 
-.opblock-summary-controlq:focus {
+.opblock-summary-control:focus {
     outline: none !important;
 }
 `
