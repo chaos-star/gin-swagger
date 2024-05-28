@@ -297,11 +297,13 @@ body {
   margin:0;
   background: #fafafa;
 }
+
 .model-title__text{
   display: none;
 }
+
 div:focus {
-    outline: none;
+    outline: none !important;
 }
 `
 
