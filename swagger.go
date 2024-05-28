@@ -300,6 +300,9 @@ body {
 .model-title__text{
   display: none;
 }
+div:focus {
+    outline: none;
+}
 `
 
 const swaggerJSTpl = `
