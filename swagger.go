@@ -325,8 +325,8 @@ window.onload = function() {
 	defaultModelExpandDepth: {{.DefaultModelExpandDepth}},
     tryItOutEnabled: {{.TryItOutEnabled}},
     syntaxHighlight: {{.SyntaxHighlight}},
-    syntaxHighlight.activated: {{.SyntaxHighlight.Activated}},
-    syntaxHighlight.theme: {{.SyntaxHighlight.Theme}}, 
+    syntaxHighlight.activated: {{.SyntaxHighlightActivated}},
+    syntaxHighlight.theme: {{.SyntaxHighlightTheme}}, 
   })
 
   const defaultClientId = "{{.Oauth2DefaultClientID}}";
