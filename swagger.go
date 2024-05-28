@@ -113,6 +113,14 @@ func SyntaxHighlightTheme(theme string) func(*Config) {
 	}
 }
 
+// DefaultModelsExpandDepth set the default expansion depth for models
+// (set to -1 completely hide the models).
+func DefaultModelsExpandDepth(depth int) func(*Config) {
+	return func(c *Config) {
+		c.DefaultModelsExpandDepth = depth
+	}
+}
+
 // DefaultModelExpandDepth set the default expansion depth for models
 // (set to -1 completely hide the models).
 func DefaultModelExpandDepth(depth int) func(*Config) {
