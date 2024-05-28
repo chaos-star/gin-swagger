@@ -25,6 +25,10 @@ type swaggerConfig struct {
 	DeepLinking              bool
 	PersistAuthorization     bool
 	Oauth2DefaultClientID    string
+	TryItOutEnabled          bool
+	SyntaxHighlight          bool
+	SyntaxHighlightActivated bool
+	SyntaxHighlightTheme     string
 }
 
 // Config stores ginSwagger configuration variables.
@@ -39,6 +43,10 @@ type Config struct {
 	DeepLinking              bool
 	PersistAuthorization     bool
 	Oauth2DefaultClientID    string
+	TryItOutEnabled          bool
+	SyntaxHighlight          bool
+	SyntaxHighlightActivated bool
+	SyntaxHighlightTheme     string
 }
 
 func (config Config) toSwaggerConfig() swaggerConfig {
@@ -51,9 +59,13 @@ func (config Config) toSwaggerConfig() swaggerConfig {
 		Oauth2RedirectURL: "`${window.location.protocol}//${window.location.host}$" +
 			"{window.location.pathname.split('/').slice(0, window.location.pathname.split('/').length - 1).join('/')}" +
 			"/oauth2-redirect.html`",
-		Title:                 config.Title,
-		PersistAuthorization:  config.PersistAuthorization,
-		Oauth2DefaultClientID: config.Oauth2DefaultClientID,
+		Title:                    config.Title,
+		PersistAuthorization:     config.PersistAuthorization,
+		Oauth2DefaultClientID:    config.Oauth2DefaultClientID,
+		TryItOutEnabled:          config.TryItOutEnabled,
+		SyntaxHighlight:          config.SyntaxHighlight,
+		SyntaxHighlightActivated: config.SyntaxHighlightActivated,
+		SyntaxHighlightTheme:     config.SyntaxHighlightTheme,
 	}
 }
 
@@ -78,11 +90,26 @@ func DeepLinking(deepLinking bool) func(*Config) {
 	}
 }
 
-// DefaultModelsExpandDepth set the default expansion depth for models
-// (set to -1 completely hide the models).
-func DefaultModelsExpandDepth(depth int) func(*Config) {
+func TryItOutEnabled(enabled bool) func(*Config) {
 	return func(c *Config) {
-		c.DefaultModelsExpandDepth = depth
+		c.TryItOutEnabled = enabled
+	}
+}
+
+func SyntaxHighlight(enabled bool) func(*Config) {
+	return func(c *Config) {
+		c.SyntaxHighlight = enabled
+	}
+}
+func SyntaxHighlightActivated(enabled bool) func(*Config) {
+	return func(c *Config) {
+		c.SyntaxHighlightActivated = enabled
+	}
+}
+
+func SyntaxHighlightTheme(theme string) func(*Config) {
+	return func(c *Config) {
+		c.SyntaxHighlightTheme = theme
 	}
 }
 
@@ -129,6 +156,10 @@ func WrapHandler(handler *webdav.Handler, options ...func(*Config)) gin.HandlerF
 		DeepLinking:              true,
 		PersistAuthorization:     false,
 		Oauth2DefaultClientID:    "",
+		TryItOutEnabled:          false,
+		SyntaxHighlight:          true,
+		SyntaxHighlightActivated: true,
+		SyntaxHighlightTheme:     "nord",
 	}
 
 	for _, c := range options {
@@ -259,7 +290,7 @@ body {
   background: #fafafa;
 }
 .model-title__text{
-display: none;
+  display: none;
 }
 `
 
@@ -283,7 +314,11 @@ window.onload = function() {
     docExpansion: "{{.DocExpansion}}",
 	deepLinking: {{.DeepLinking}},
 	defaultModelsExpandDepth: {{.DefaultModelsExpandDepth}},
-	defaultModelExpandDepth: {{.DefaultModelExpandDepth}}
+	defaultModelExpandDepth: {{.DefaultModelExpandDepth}},
+    tryItOutEnabled: {{.TryItOutEnabled}},
+    syntaxHighlight: {{.SyntaxHighlight}},
+    syntaxHighlight.activated: {{.SyntaxHighlight.Activated}},
+    syntaxHighlight.theme: {{.SyntaxHighlight.Theme}}, 
   })
 
   const defaultClientId = "{{.Oauth2DefaultClientID}}";
