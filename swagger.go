@@ -21,6 +21,7 @@ type swaggerConfig struct {
 	Title                    string
 	Oauth2RedirectURL        htmlTemplate.JS
 	DefaultModelsExpandDepth int
+	DefaultModelExpandDepth  int
 	DeepLinking              bool
 	PersistAuthorization     bool
 	Oauth2DefaultClientID    string
@@ -34,6 +35,7 @@ type Config struct {
 	InstanceName             string
 	Title                    string
 	DefaultModelsExpandDepth int
+	DefaultModelExpandDepth  int
 	DeepLinking              bool
 	PersistAuthorization     bool
 	Oauth2DefaultClientID    string
@@ -80,6 +82,14 @@ func DeepLinking(deepLinking bool) func(*Config) {
 func DefaultModelsExpandDepth(depth int) func(*Config) {
 	return func(c *Config) {
 		c.DefaultModelsExpandDepth = depth
+	}
+}
+
+// DefaultModelExpandDepth set the default expansion depth for models
+// (set to -1 completely hide the models).
+func DefaultModelExpandDepth(depth int) func(*Config) {
+	return func(c *Config) {
+		c.DefaultModelExpandDepth = depth
 	}
 }
 
@@ -268,6 +278,7 @@ window.onload = function() {
     docExpansion: "{{.DocExpansion}}",
 	deepLinking: {{.DeepLinking}},
 	defaultModelsExpandDepth: {{.DefaultModelsExpandDepth}}
+	defaultModelExpandDepth: {{.DefaultModelExpandDepth}}
   })
 
   const defaultClientId = "{{.Oauth2DefaultClientID}}";
