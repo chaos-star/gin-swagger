@@ -258,6 +258,9 @@ body {
   margin:0;
   background: #fafafa;
 }
+.model-title__text{
+display: none;
+}
 `
 
 const swaggerJSTpl = `
