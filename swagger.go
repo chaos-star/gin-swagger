@@ -279,7 +279,7 @@ window.onload = function() {
 	layout: "StandaloneLayout",
     docExpansion: "{{.DocExpansion}}",
 	deepLinking: {{.DeepLinking}},
-	defaultModelsExpandDepth: {{.DefaultModelsExpandDepth}}
+	defaultModelsExpandDepth: {{.DefaultModelsExpandDepth}},
 	defaultModelExpandDepth: {{.DefaultModelExpandDepth}}
   })
 
