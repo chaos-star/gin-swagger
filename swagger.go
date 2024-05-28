@@ -324,9 +324,14 @@ window.onload = function() {
 	defaultModelsExpandDepth: {{.DefaultModelsExpandDepth}},
 	defaultModelExpandDepth: {{.DefaultModelExpandDepth}},
     tryItOutEnabled: {{.TryItOutEnabled}},
-    syntaxHighlight: {{.SyntaxHighlight}},
-    syntaxHighlight.activated: {{.SyntaxHighlightActivated}},
-    syntaxHighlight.theme: {{.SyntaxHighlightTheme}}, 
+    {{if .SyntaxHighlight}}
+    syntaxHighlight:{
+        activated: {{.SyntaxHighlightActivated}},
+        theme: {{.SyntaxHighlightTheme}},
+    },
+    {{else}}
+     syntaxHighlight: {{.SyntaxHighlight}},
+    {{end}}
   })
 
   const defaultClientId = "{{.Oauth2DefaultClientID}}";
